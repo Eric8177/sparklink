@@ -1,0 +1,1805 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SparkLink | 香港領先兒童及青少年課程平台</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a0ca3;
+            --secondary: #4cc9f0;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #06d6a0;
+            --transition: all 0.3s ease;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.12);
+            --radius: 12px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans TC', 'Poppins', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', 'Noto Sans TC', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+        
+        .navbar.scrolled {
+            padding: 10px 0;
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-right: 10px;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            letter-spacing: -0.5px;
+        }
+        
+        .logo-text span {
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .nav-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 100px;
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1) 0%, rgba(76, 201, 240, 0.1) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-text {
+            flex: 1;
+            padding-right: 30px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-dark);
+        }
+        
+        .hero h1 span {
+            color: var(--accent);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--gray);
+            max-width: 90%;
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .hero-img {
+            max-width: 100%;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-hover);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Section Common */
+        .section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 20px auto 0;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+        
+        /* Page Content */
+        .page-content {
+            min-height: 80vh;
+            padding: 150px 0 50px;
+            display: none;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .page-title h1 {
+            font-size: 2.8rem;
+            color: var(--primary-dark);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .page-title h1:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .page-content p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+        }
+        
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            background-color: var(--light);
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .step-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(67, 97, 238, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        .step-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+        
+        /* Discount Tiers - Updated for better readability */
+        .discount-section {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .discount-section .section-title h2,
+        .discount-section .section-title p {
+            color: #ffffff; /* Ensure light text color */
+        }
+        
+        .discount-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .discount-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            transition: var(--transition);
+            color: #ffffff; /* Ensure light text color */
+        }
+        
+        .discount-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .discount-time {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-weight: 500;
+            color: #ffffff; /* Ensure light text color */
+        }
+        
+        .discount-percent {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 20px 0;
+            line-height: 1;
+            color: #ffffff; /* Ensure light text color */
+        }
+        
+        .discount-card.yellow {
+            background: rgba(255, 193, 7, 0.15);
+        }
+        
+        .discount-card.orange {
+            background: rgba(253, 126, 20, 0.15);
+        }
+        
+        .discount-card.red {
+            background: rgba(220, 53, 69, 0.15);
+        }
+        
+        /* Benefits */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .benefit-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--light);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .testimonial-text:before {
+            content: """;
+            position: absolute;
+            top: -20px;
+            left: -10px;
+            font-size: 5rem;
+            color: var(--secondary);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .author-info h4 {
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+        
+        .author-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Call to Action */
+        .cta {
+            background: linear-gradient(135deg, var(--accent) 0%, #b5179e 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .cta h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.2rem;
+        }
+        
+        .cta .btn {
+            background: white;
+            color: var(--accent);
+            font-size: 1.1rem;
+            padding: 16px 45px;
+        }
+        
+        .cta .btn:hover {
+            background: var(--light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 50px;
+            }
+            
+            .hero p {
+                max-width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .hero-btns {
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section {
+                padding: 70px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .nav-btn {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+            }
+            
+            .page-content {
+                padding: 120px 0 30px;
+            }
+            
+            .page-title h1 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+        
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: white;
+            z-index: 1100;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .mobile-nav.active {
+            right: 0;
+        }
+        
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .close-menu {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .mobile-nav-links {
+            list-style: none;
+        }
+        
+        .mobile-nav-links li {
+            margin-bottom: 15px;
+        }
+        
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            display: block;
+            padding: 10px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+        
+        .mobile-nav-links a:hover {
+            background: rgba(67, 97, 238, 0.1);
+            color: var(--primary);
+        }
+        
+        .mobile-nav-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        /* Overlay for mobile menu */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1099;
+            display: none;
+        }
+        
+        /* Page Content */
+        .page-content {
+            min-height: 80vh;
+            padding: 100px 0 50px;
+        }
+        
+        /* FAQ Page */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .faq-question {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+        
+        .faq-answer {
+            background: white;
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-answer.active {
+            padding: 20px;
+            max-height: 500px;
+        }
+        
+        /* Registration Page */
+        .registration-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--radius);
+            font-family: 'Noto Sans TC', sans-serif;
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .form-submit {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: block;
+            margin: 30px auto 0;
+        }
+        
+        .form-submit:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        /* Course Card */
+        .course-card {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            background: white;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .course-image {
+            height: 200px;
+            background-color: #eee;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .course-content {
+            padding: 20px;
+        }
+        
+        .course-badge {
+            background: var(--accent);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        .course-price {
+            color: var(--primary);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: var(--gray);
+            font-size: 1rem;
+            margin-left: 10px;
+        }
+        
+        /* Community Page */
+        .post-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            margin-bottom: 25px;
+        }
+        
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .post-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+        
+        .post-meta h4 {
+            margin-bottom: 5px;
+        }
+        
+        .post-date {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Commission Plan */
+        .commission-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+        
+        .commission-table th,
+        .commission-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .commission-table th {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .commission-table tr:nth-child(even) {
+            background: rgba(67, 97, 238, 0.05);
+        }
+        
+        /* Active Page */
+        .active-page {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo" onclick="showPage('homePage'); return false;">
+                <div class="logo-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <div class="logo-text">Spark<span>Link</span></div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#how-it-works" onclick="showPage('homePage'); return false;">平台優勢</a></li>
+                <li><a href="#discount" onclick="showPage('homePage'); return false;">折扣模式</a></li>
+                <li><a href="#benefits" onclick="showPage('homePage'); return false;">合作好處</a></li>
+                <li><a href="#testimonials" onclick="showPage('homePage'); return false;">成功案例</a></li>
+                <li><a href="#" class="nav-btn" onclick="showPage('institutionRegPage'); return false;">立即加入</a></li>
+            </ul>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <a href="#" class="logo" onclick="showPage('homePage'); closeMobileMenu(); return false;">
+                <div class="logo-text">Spark<span>Link</span></div>
+            </a>
+            <button class="close-menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="#how-it-works" onclick="showPage('homePage'); closeMobileMenu();">平台優勢</a></li>
+            <li><a href="#discount" onclick="showPage('homePage'); closeMobileMenu();">折扣模式</a></li>
+            <li><a href="#benefits" onclick="showPage('homePage'); closeMobileMenu();">合作好處</a></li>
+            <li><a href="#testimonials" onclick="showPage('homePage'); closeMobileMenu();">成功案例</a></li>
+            <li><a href="#" onclick="showPage('aboutPage'); closeMobileMenu();">關於我們</a></li>
+            <li><a href="#" onclick="showPage('partnersPage'); closeMobileMenu();">合作機構</a></li>
+            <li><a href="#" onclick="showPage('faqPage'); closeMobileMenu();">常見問題</a></li>
+        </ul>
+        <a href="#" class="btn btn-primary mobile-nav-btn" onclick="showPage('institutionRegPage'); closeMobileMenu();">立即加入</a>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Home Page -->
+    <div id="homePage" class="active-page">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h1>點燃學習熱情，<span>匯聚優質課程</span></h1>
+                    <p>香港首個兒童及青少年課程折扣平台，幫助教育機構填補剩餘名額，為家長提供高性價比課程選擇。</p>
+                    <div class="hero-btns">
+                        <a href="#" class="btn btn-primary" onclick="showPage('institutionRegPage'); return false;">機構註冊</a>
+                        <a href="#" class="btn btn-secondary" onclick="showPage('parentRegPage'); return false;">家長註冊</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Crect width='600' height='400' fill='%234361ee' opacity='0.1'/%3E%3Ccircle cx='300' cy='200' r='80' fill='%233a0ca3' opacity='0.2'/%3E%3Ctext x='300' y='200' font-family='Arial' font-size='24' fill='%233a0ca3' text-anchor='middle' dominant-baseline='middle'%3ESparkLink 平台%3C/text%3E%3C/svg%3E" alt="SparkLink Platform" class="hero-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section id="how-it-works" class="section how-it-works">
+            <div class="container">
+                <div class="section-title">
+                    <h2>平台運作模式</h2>
+                    <p>簡單三步，實現教育資源高效匹配</p>
+                </div>
+                <div class="steps">
+                    <div class="step-card">
+                        <div class="step-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <h3>機構提供名額</h3>
+                        <p>教育機構將剩餘課程名額上傳至平台，根據開課時間設定階梯折扣</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>家長選購課程</h3>
+                        <p>家長透過平台搜索、比較並購買高性價比課程，使用學分系統支付</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>平台撮合交易</h3>
+                        <p>平台處理交易、核銷課程，教育機構獲得收入，家長享受折扣</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Discount Tiers -->
+        <section id="discount" class="section discount-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>階梯式折扣模式</h2>
+                    <p>開課時間越近，折扣力度越大，最大化填補空置名額</p>
+                </div>
+                <div class="discount-container">
+                    <div class="discount-card yellow">
+                        <div class="discount-time">開課前14天</div>
+                        <div class="discount-percent">20% OFF</div>
+                        <p>原價80%出售，適合計劃型家長</p>
+                    </div>
+                    <div class="discount-card orange">
+                        <div class="discount-time">開課前7天</div>
+                        <div class="discount-percent">50% OFF</div>
+                        <p>半價優惠，吸引尋求性價比家長</p>
+                    </div>
+                    <div class="discount-card red">
+                        <div class="discount-time">開課前3天</div>
+                        <div class="discount-percent">70% OFF</div>
+                        <p>超值清倉價，減少機構空置損失</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits -->
+        <section id="benefits" class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>合作機構優勢</h2>
+                    <p>加入SparkLink，獲得全方位業務增長支持</p>
+                </div>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>收入增長</h3>
+                        <p>將空置名額轉化為實際收入，平均合作機構增收達35%</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>生源拓展</h3>
+                        <p>接觸平台數萬活躍家長，30%用戶轉化為正價課程學生</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <h3>品牌曝光</h3>
+                        <p>專屬機構頁面與課程展示，提升機構知名度與信譽</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3>智能工具</h3>
+                        <p>AI動態定價、生源分析、庫存管理等數字化運營工具</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section id="testimonials" class="section testimonials">
+            <div class="container">
+                <div class="section-title">
+                    <h2>成功案例</h2>
+                    <p>聽聽合作機構與家長的真實分享</p>
+                </div>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">加入SparkLink後，我們的周末編程班空置率從40%降到不足10%，三個月內增收超過12萬港元，更重要的是帶來了許多長期學生。</p>
+                        <div class="testimonial-author">
+                            <div class="author-img">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h4>陳啟明</h4>
+                                <p>創科先鋒教育中心 總監</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">通過SparkLink，我以半價為孩子報名了優質的英語課程，省下的費用可以多報一門興趣班。平台操作簡單，課程選擇豐富，非常推薦給各位家長。</p>
+                        <div class="testimonial-author">
+                            <div class="author-img">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h4>李淑怡</h4>
+                                <p>平台家長用戶</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">SparkLink的AI動態定價系統真正解決了我們的痛點，不僅減少了空置損失，還提供了寶貴的市場數據，幫助我們優化課程安排和定價策略。</p>
+                        <div class="testimonial-author">
+                            <div class="author-img">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h4>張偉豪</h4>
+                                <p>藝能教育集團 運營經理</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="cta">
+            <div class="container">
+                <h2>立即加入SparkLink教育生態圈</h2>
+                <p>無論您是教育機構還是家長，現在註冊即可獲得專屬優惠</p>
+                <a href="#" class="btn" onclick="showPage('institutionRegPage'); return false;">免費註冊體驗</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Us Page -->
+    <div id="aboutPage" class="page-content">
+        <div class="container">
+            <div class="page-title">
+                <h1>關於我們</h1>
+                <p>點燃學習熱情，匯聚香港優質兒童及青少年課程資源</p>
+            </div>
+            
+            <div class="grid-2">
+                <div>
+                    <h2>我們的使命</h2>
+                    <p>SparkLink 致力於解決香港教育機構的閒置課程名額問題，同時為家長提供高性價比的優質課程選擇。我們相信每個學習機會都應被充分利用，每位學生都應獲得最適合的教育資源。</p>
+                    
+                    <h2>創辦故事</h2>
+                    <p>創辦人張先生作為兩個孩子的家長，深切體會到為孩子尋找合適課外活動的挑戰。同時，他發現教育機構常面臨課程名額填不滿的困境。這激發了他創建 SparkLink 的靈感，打造一個雙贏的平台。</p>
+                </div>
+                <div>
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Crect width='600' height='400' fill='%234cc9f0' opacity='0.1'/%3E%3Ccircle cx='300' cy='200' r='80' fill='%234361ee' opacity='0.2'/%3E%3Ctext x='300' y='200' font-family='Arial' font-size='24' fill='%234361ee' text-anchor='middle' dominant-baseline='middle'%3E關於 SparkLink%3C/text%3E%3C/svg%3E" alt="關於我們" style="width:100%; border-radius: var(--radius);">
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <h2>我們的團隊</h2>
+                    <p>經驗豐富的教育科技專家</p>
+                </div>
+                
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="author-img" style="margin:0 auto 20px; width:100px; height:100px; font-size:2rem;">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3 style="text-align:center;">張偉明</h3>
+                        <p style="text-align:center; color:var(--primary); font-weight:500;">創辦人兼CEO</p>
+                        <p>前教育科技公司高管，擁有15年教育行業經驗，香港大學教育學碩士。</p>
+                    </div>
+                    <div class="card">
+                        <div class="author-img" style="margin:0 auto 20px; width:100px; height:100px; font-size:2rem;">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3 style="text-align:center;">陳美玲</h3>
+                        <p style="text-align:center; color:var(--primary); font-weight:500;">技術總監</p>
+                        <p>前Google工程師，專注於AI算法開發，香港科技大學計算機科學博士。</p>
+                    </div>
+                    <div class="card">
+                        <div class="author-img" style="margin:0 auto 20px; width:100px; height:100px; font-size:2rem;">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3 style="text-align:center;">李國強</h3>
+                        <p style="text-align:center; color:var(--primary); font-weight:500;">運營總監</p>
+                        <p>擁有10年教育機構運營經驗，熟悉香港教育市場，擅長資源整合。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Platform Advantages Page -->
+    <div id="advantagesPage" class="page-content">
+        <div class="container">
+            <div class="page-title">
+                <h1>平台優勢</h1>
+                <p>SparkLink如何幫助教育機構和家長創造價值</p>
+            </div>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>高效資源匹配</h3>
+                    <p>利用AI算法精準匹配課程與學生需求，提高資源利用率，減少閒置浪費。</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <h3>智能動態定價</h3>
+                    <p>基於開課時間和需求的自動折扣系統，最大化機構收益和家長節省。</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>龐大家長社群</h3>
+                    <p>超過50,000名香港活躍家長用戶，為機構帶來持續生源。</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>安全保障</h3>
+                    <p>所有課程經過嚴格審核，支付系統符合香港金融安全標準，保障交易安全。</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>移動優先體驗</h3>
+                    <p>全平台響應式設計，專屬手機APP讓家長隨時隨地發現優質課程。</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>數據洞察</h3>
+                    <p>為機構提供詳細的市場分析和學員數據，幫助優化課程設置和營銷策略。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Partner Institutions Page -->
+    <div id="partnersPage" class="page-content">
+        <div class="container">
+            <div class="page-title">
+                <h1>合作機構</h1>
+                <p>超過200家香港優質教育機構已加入SparkLink</p>
+            </div>
+            
+            <div class="section-title">
+                <h2>精選合作夥伴</h2>
+                <p>各領域頂尖教育機構</p>
+            </div>
+            
+            <div class="grid-4">
+                <div class="card" style="text-align:center;">
+                    <div class="card-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3>國際語言中心</h3>
+                    <p>專業英語、普通話及多國語言課程</p>
+                </div>
+                <div class="card" style="text-align:center;">
+                    <div class="card-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>創科編程學院</h3>
+                    <p>兒童及青少年編程與機器人課程</p>
+                </div>
+                <div class="card" style="text-align:center;">
+                    <div class="card-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>藝能音樂學校</h3>
+                    <p>鋼琴、小提琴及多種樂器培訓</p>
+                </div>
+                <div class="card" style="text-align:center;">
+                    <div class="card-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <h3>活力體育會</h3>
+                    <p>游泳、籃球、羽毛球等體育培訓</p>
+                </div>
+                <div class="card" style="text-align:center;">
+                    <div class="card-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>創意美術坊</h3>
+                    <p>繪畫、雕塑、設計等藝術課程</p>
+                </div>
+                <div class="card" style="text-align:center;">
+                    <div class="card-icon">
+                        <i class="fas fa-chess"></i>
+                    </div>
+                    <h3>智慧棋院</h3>
+                    <p>圍棋、國際象棋等棋類培訓</p>
+                </div>
+                <div class="card" style="text-align:center;">
+                    <div class="card-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>小小科學家實驗室</h3>
+                    <p>STEM科學實驗課程</p>
+                </div>
+                <div class="card" style="text-align:center;">
+                    <div class="card-icon">
+                        <i class="fas fa-theater-masks"></i>
+                    </div>
+                    <h3>戲劇表達中心</h3>
+                    <p>兒童戲劇、演講表達課程</p>
+                </div>
+            </div>
+            
+            <div class="section-title" style="margin-top:80px;">
+                <h2>加入我們的合作夥伴</h2>
+                <p>立即註冊，開啟業務增長新篇章</p>
+            </div>
+            
+            <div style="text-align:center; margin-top:40px;">
+                <a href="#" class="btn btn-primary" onclick="showPage('institutionRegPage'); return false;">機構註冊</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- FAQ Page -->
+    <div id="faqPage" class="page-content">
+        <div class="container">
+            <div class="page-title">
+                <h1>常見問題</h1>
+                <p>解答您對SparkLink平台的疑問</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        家長如何購買課程？
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>家長需先註冊SparkLink帳戶，然後購買學分（EduCredits）。在平台上瀏覽課程時，選擇心儀課程後使用學分支付即可完成購買。系統會自動發送課程確認信息和核銷碼到您的帳戶。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        教育機構如何上架課程？
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>機構註冊後，登錄管理後台，點擊"新增課程"，填寫課程詳情（名稱、類別、年齡段、時間、地點等），設置初始價格和名額。平台會根據開課時間自動應用階梯折扣。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        學分購買後有效期多久？
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>所有學分購買後有效期為12個月。您可以在"我的帳戶"中查看學分餘額和有效期。過期學分將自動失效，建議您合理安排使用時間。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        佣金如何計算和收取？
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>平台收取每筆交易金額的20%作為佣金。例如：課程售價HK$800，平台收取HK$160佣金，機構獲得HK$640。佣金在結算時自動扣除，無需額外操作。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        課程不滿意可以退款嗎？
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>開課前72小時以上可全額退款；開課前24-72小時可退50%；開課前24小時內恕不退費。特殊情況請聯繫客服處理。</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        機構如何獲得付款？
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>課程完成後3個工作日內，平台會將扣除佣金後的款項轉入您註冊的銀行帳戶。每月5日前可下載上個月的詳細結算報表。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align:center; margin-top:50px;">
+                <p>還有其他問題？請聯繫我們的客服團隊</p>
+                <a href="#" class="btn btn-primary">聯繫客服</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Parent Registration Page -->
+    <div id="parentRegPage" class="page-content">
+        <div class="container">
+            <div class="page-title">
+                <h1>家長註冊帳戶</h1>
+                <p>加入SparkLink，發現優質折扣課程</p>
+            </div>
+            
+            <div class="registration-container">
+                <form>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="parentFirstName">姓氏</label>
+                            <input type="text" id="parentFirstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="parentLastName">名字</label>
+                            <input type="text" id="parentLastName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="parentEmail">電子郵件</label>
+                        <input type="email" id="parentEmail" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="parentPhone">手機號碼</label>
+                        <input type="tel" id="parentPhone" placeholder="香港手機號碼" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="parentPassword">設置密碼</label>
+                        <input type="password" id="parentPassword" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="parentPasswordConfirm">確認密碼</label>
+                        <input type="password" id="parentPasswordConfirm" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>子女信息（可添加多位）</label>
+                        <div style="background:#f8f9fa; padding:15px; border-radius:var(--radius); margin-top:10px;">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>子女姓名</label>
+                                    <input type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label>出生日期</label>
+                                    <input type="date">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>興趣類別（可多選）</label>
+                                <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:10px;">
+                                    <label style="display:flex; align-items:center;">
+                                        <input type="checkbox"> 語言學習
+                                    </label>
+                                    <label style="display:flex; align-items:center;">
+                                        <input type="checkbox"> 藝術音樂
+                                    </label>
+                                    <label style="display:flex; align-items:center;">
+                                        <input type="checkbox"> 體育運動
+                                    </label>
+                                    <label style="display:flex; align-items:center;">
+                                        <input type="checkbox"> STEM/編程
+                                    </label>
+                                    <label style="display:flex; align-items:center;">
+                                        <input type="checkbox"> 學科補習
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="button" style="background:none; border:none; color:var(--primary); cursor:pointer;">
+                                <i class="fas fa-plus"></i> 添加另一位子女
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="parentDistrict">主要活動區域</label>
+                        <select id="parentDistrict" required>
+                            <option value="">請選擇區域</option>
+                            <option value="hk">香港島</option>
+                            <option value="kowloon">九龍</option>
+                            <option value="nt">新界</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" required> 我同意SparkLink的<a href="#">服務條款</a>和<a href="#">隱私政策</a>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="form-submit">註冊帳戶</button>
+                </form>
+            </div>
+            
+            <div style="text-align:center; margin-top:40px;">
+                <p>已經有帳戶？ <a href="#">立即登入</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Additional pages would be structured similarly -->
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="logo" onclick="showPage('homePage'); return false;">
+                        <div class="logo-text" style="color: white;">Spark<span style="color: var(--accent);">Link</span></div>
+                    </a>
+                    <p style="margin: 20px 0; opacity: 0.8;">點燃學習熱情，匯聚香港優質兒童及青少年課程資源</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>快速連結</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="showPage('homePage'); return false;">首頁</a></li>
+                        <li><a href="#" onclick="showPage('aboutPage'); return false;">關於我們</a></li>
+                        <li><a href="#" onclick="showPage('advantagesPage'); return false;">平台優勢</a></li>
+                        <li><a href="#" onclick="showPage('partnersPage'); return false;">合作機構</a></li>
+                        <li><a href="#" onclick="showPage('faqPage'); return false;">常見問題</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>家長專區</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="showPage('parentRegPage'); return false;">註冊帳戶</a></li>
+                        <li><a href="#">購買學分</a></li>
+                        <li><a href="#">課程搜尋</a></li>
+                        <li><a href="#">折扣專區</a></li>
+                        <li><a href="#">家長社群</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>機構合作</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="showPage('institutionRegPage'); return false;">機構註冊</a></li>
+                        <li><a href="#">佣金計劃</a></li>
+                        <li><a href="#">上架指南</a></li>
+                        <li><a href="#">數據報告</a></li>
+                        <li><a href="#">廣告服務</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SparkLink 燃匯教育科技有限公司 版權所有</p>
+                <p>香港九龍觀塘創業街38號 | 電話: 852-6688-7766</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Mobile menu
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileNav = document.getElementById('mobileNav');
+        const overlay = document.getElementById('overlay');
+        const closeMenu = document.querySelector('.close-menu');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileNav.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        function closeMobileMenu() {
+            mobileNav.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        closeMenu.addEventListener('click', closeMobileMenu);
+        
+        overlay.addEventListener('click', closeMobileMenu);
+        
+        // FAQ functionality
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        if (faqQuestions.length > 0) {
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const icon = this.querySelector('i');
+                    const answer = this.nextElementSibling;
+                    
+                    // Toggle answer
+                    answer.classList.toggle('active');
+                    
+                    // Rotate icon
+                    if (answer.classList.contains('active')) {
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    } else {
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    }
+                });
+            });
+        }
+        
+        // Page navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-content, #homePage').forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            // Show requested page
+            document.getElementById(pageId).style.display = 'block';
+            
+            // Add active class for styling
+            document.getElementById(pageId).classList.add('active-page');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Initialize home page as active
+        window.onload = function() {
+            document.getElementById('homePage').classList.add('active-page');
+        }
+    </script>
+</body>
+</html>
